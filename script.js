@@ -1,7 +1,7 @@
 // 1. Password Verification
 function checkPassword() {
     const userInput = document.getElementById("password-input").value;
-    const correctPassword = "ouranniversary"; // Change this to whatever code you want!
+    const correctPassword = "Wuffya!"; // Change this to whatever code you want!
 
     if (userInput.toLowerCase() === correctPassword.toLowerCase()) {
         document.getElementById("lock-screen").classList.add("hidden");
