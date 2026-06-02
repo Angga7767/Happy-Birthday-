@@ -240,3 +240,26 @@ main {
     background: #4759b8;
     transform: translateY(-2px);
 }
+/* Better mobile experience */
+@media (max-width: 600px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .nav-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+/* Make sure pages take full width when shown */
+[id^="page-"] {
+    width: 100%;
+}
+
+/* Optional: nice entrance animation for new pages */
+[id^="page-"].hidden {
+    opacity: 0;
+    transition: opacity 0.4s;
+}
