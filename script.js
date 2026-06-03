@@ -8,12 +8,12 @@ function onYouTubeIframeAPIReady() {
     ytPlayer = new YT.Player('yt-bg-player', {
         height: '100',
         width: '100',
-        videoId: 'xns4Az5rl5g', // YouTube Video ID for Perfection (BBIBEEB)
+        videoId: 'xns4Azrl5g', // YouTube Video ID for Perfection (BBIBEEB)
         playerVars: {
             'autoplay': 0,        // Handled manually upon unlocking
             'controls': 0,        // Completely invisible/hidden
             'loop': 1,            // Loops background track indefinitely
-            'playlist': 'xns4Az5rl5g' // Required by YT to make a single video loop
+            'playlist': 'xns4Azrl5g' // Required by YT to make a single video loop
         },
         events: {
             'onReady': onPlayerReady
@@ -26,11 +26,15 @@ function onPlayerReady(event) {
     event.target.setVolume(50); 
 }
 
-// Dynamically inject the official YouTube Iframe API script into the document
+// Dynamically inject the official YouTube Iframe API script into the document safely
 const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
-const firstScriptTag = document.getElementsByTagName('script')[firstScriptTag];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+const firstScriptTag = document.getElementsByTagName('script')[0]; // FIX: Correctly targeting the first script array index
+if (firstScriptTag) {
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+} else {
+    document.head.appendChild(tag);
+}
 
 
 // ==========================================
@@ -43,6 +47,9 @@ function checkPassword() {
     if (userInput.toLowerCase() === correctPassword.toLowerCase()) {
         document.getElementById("lock-screen").classList.add("hidden");
         document.getElementById("main-content").classList.remove("hidden");
+        
+        // Ensure Page 1 is explicitly showing while Page 2 & 3 stay hidden initially
+        showPage(1);
         
         // Autoplay the background music as soon as the click unlocks the screen
         if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
