@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const userInput = input.value.trim();
 
         // Change this password if you want
-        const correctPassword = "Wuffya!";
+        const correctPassword = "Wuffya";
 
         if (userInput.toLowerCase() === correctPassword.toLowerCase()) {
             document.getElementById("lock-screen").classList.add("hidden");
