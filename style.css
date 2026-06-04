@@ -189,3 +189,57 @@ main {
         font-size: 2rem;
     }
 }
+
+/* Anime Character Corner Styling */
+.anime-corner-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.anime-character-img {
+    width: 80px;            /* Keeps the character small and cute */
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;     /* Makes it a sleek round profile circle */
+    border: 3px solid #3a7bd5;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Stylized Anime Speech Bubble */
+.speech-bubble {
+    position: relative;
+    background: #3a7bd5;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Small speech bubble pointer arrow */
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 6px 0 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent #3a7bd5;
+}
+
+/* Adjust sizes slightly for mobile screens so everything fits perfectly */
+@media (max-width: 480px) {
+    .anime-character-img {
+        width: 65px;
+        height: 65px;
+    }
+    .speech-bubble {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+}
