@@ -7,7 +7,6 @@
 }
 
 body {
-  body {
     /* This adds a 40% white overlay over your photo so your text and memory cards stay easy to read! */
     background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('bg.jpg');
     
