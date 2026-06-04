@@ -7,12 +7,24 @@
 }
 
 body {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  body {
+    /* This adds a 40% white overlay over your photo so your text and memory cards stay easy to read! */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('bg.jpg');
+    
+    /* THE MAGIC LINES FOR PHONES: */
+    background-size: cover;        /* Fills the screen perfectly without stretching */
+    background-position: center;  /* Keeps the middle of the photo locked to the center of her screen */
+    background-attachment: fixed;  /* Keeps the background steady while she scrolls through your cards */
+    background-repeat: no-repeat;  /* Prevents the image from repeating like a grid tileset */
+    
     min-height: 100vh;
     padding: 20px 0;
-    /* Removed flex center that was breaking layout */
+    overflow-x: hidden;
 }
-
+    .lock-box, .achievements-container {
+    background: rgba(255, 255, 255, 0.9); /* 90% white, 10% see-through */
+    backdrop-filter: blur(5px);           /* Gives it a gorgeous premium frosted-glass effect */
+}
 /* Hidden class */
 .hidden {
     display: none !important;
