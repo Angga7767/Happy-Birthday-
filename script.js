@@ -1,5 +1,37 @@
 // ==========================================
-// 1. Password Verification & Music Launch
+// 1. YouTube Background Music Setup & API
+// ==========================================
+let ytPlayer;
+
+function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('yt-bg-player', {
+        height: '100',
+        width: '100',
+        videoId: 'xns4Az5rl5g', // YouTube Video ID for Perfection (BBIBEEB)
+        playerVars: {
+            'autoplay': 0,        
+            'controls': 0,        
+            'loop': 1,            
+            'playlist': 'xns4Az5rl5g' 
+        },
+        events: {
+            'onReady': onPlayerReady
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    event.target.setVolume(50); 
+}
+
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+const firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+// ==========================================
+// 2. Password Verification System
 // ==========================================
 function checkPassword() {
     const userInput = document.getElementById("password-input").value;
@@ -9,14 +41,11 @@ function checkPassword() {
         document.getElementById("lock-screen").classList.add("hidden");
         document.getElementById("main-content").classList.remove("hidden");
         
-        // Ensure Page 1 layout explicitly initializes properly
         showPage(1);
         
-        // CINEMATIC AUTOPLAY: Launch background music instantly from her unlock click
-        const bgAudio = document.getElementById("bg-audio");
-        if (bgAudio) {
-            bgAudio.volume = 0.5; // Set ambient volume at a comfortable 50%
-            bgAudio.play().catch(err => console.log("Ambient music playback interaction caught:", err));
+        if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+            ytPlayer.setVolume(50);
+            ytPlayer.playVideo();
         }
     } else {
         const errorMsg = document.getElementById("error-msg");
@@ -26,37 +55,31 @@ function checkPassword() {
 
 
 // ==========================================
-// 2. Voice Memo Controls & Auto-Volume Ducking
+// 3. Voice Memo Controls & Auto-Volume Ducking
 // ==========================================
 const audio = document.getElementById("birthday-audio");
 const playBtn = document.getElementById("play-btn");
 const progressBar = document.getElementById("progress-bar");
-const bgAudioElement = document.getElementById("bg-audio");
 
 function toggleAudio() {
     if (audio.paused || audio.ended) {
         audio.play()
             .then(() => {
                 playBtn.innerText = "⏸ Pause";
-                
-                // AUDIO DUCKING: Smoothly drop background track to a soft 15% so your voice stands out
-                if (bgAudioElement) {
-                    bgAudioElement.volume = 0.15;
+                if (ytPlayer && typeof ytPlayer.setVolume === 'function') {
+                    ytPlayer.setVolume(15);
                 }
             })
             .catch(err => console.log("Audio play blocked or interrupted:", err));
     } else {
         audio.pause();
         playBtn.innerText = "▶ Play";
-        
-        // RESTORE VOLUME: Bring background music back to 50% ambient level on pause
-        if (bgAudioElement) {
-            bgAudioElement.volume = 0.5;
+        if (ytPlayer && typeof ytPlayer.setVolume === 'function') {
+            ytPlayer.setVolume(50);
         }
     }
 }
 
-// Update the timeline progress bar smoothly as your voice plays
 audio.addEventListener("timeupdate", () => {
     if (audio.duration) {
         const percentage = (audio.currentTime / audio.duration) * 100;
@@ -64,17 +87,14 @@ audio.addEventListener("timeupdate", () => {
     }
 });
 
-// Automatically switch back buttons and restore music volume level when track ends
 audio.addEventListener("ended", () => {
     playBtn.innerText = "▶ Play";
     progressBar.style.width = "0%";
-    
-    if (bgAudioElement) {
-        bgAudioElement.volume = 0.5;
+    if (ytPlayer && typeof ytPlayer.setVolume === 'function') {
+        ytPlayer.setVolume(50);
     }
 });
 
-// Allows clicking anywhere on the progress line to scrub/seek through your track
 function seekAudio(event) {
     const container = event.currentTarget;
     const rect = container.getBoundingClientRect();
@@ -87,7 +107,7 @@ function seekAudio(event) {
 
 
 // ==========================================
-// 3. Modular Multi-Page Navigation (SPA)
+// 4. Multi-Page Navigation Engine (SPA)
 // ==========================================
 function showPage(pageNumber) {
     const allPages = document.querySelectorAll('[id^="page-"]');
@@ -103,8 +123,9 @@ function showPage(pageNumber) {
     }
 }
 
+
 // ==========================================
-// 4. Video State Handling Functions
+// 5. Video State Handling Functions
 // ==========================================
 function pauseSurpriseVideo() {
     const video = document.getElementById("surprise-video");
