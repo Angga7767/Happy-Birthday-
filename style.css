@@ -7,23 +7,25 @@
 }
 
 body {
-    /* This adds a 40% white overlay over your photo so your text and memory cards stay easy to read! */
+    /* Fixed: Removed the double "body {" nesting */
     background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('bg.jpg');
-    
-    /* THE MAGIC LINES FOR PHONES: */
-    background-size: cover;        /* Fills the screen perfectly without stretching */
-    background-position: center;  /* Keeps the middle of the photo locked to the center of her screen */
-    background-attachment: fixed;  /* Keeps the background steady while she scrolls through your cards */
-    background-repeat: no-repeat;  /* Prevents the image from repeating like a grid tileset */
-    
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     min-height: 100vh;
     padding: 20px 0;
     overflow-x: hidden;
 }
-    .lock-box, .achievements-container {
-    background: rgba(255, 255, 255, 0.9); /* 90% white, 10% see-through */
-    backdrop-filter: blur(5px);           /* Gives it a gorgeous premium frosted-glass effect */
+
+/* Glassmorphism Effect for Containers */
+.lock-box, .audio-container, .achievements-container, .card-front {
+    background: rgba(255, 255, 255, 0.85) !important; /* Slightly see-through white */
+    backdrop-filter: blur(8px); /* Blurs the background behind the box */
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
+
 /* Hidden class */
 .hidden {
     display: none !important;
@@ -41,11 +43,8 @@ body {
 }
 
 .lock-box {
-    background: white;
     padding: 40px 30px;
-    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     max-width: 90%;
 }
 
@@ -76,13 +75,12 @@ main {
     padding: 20px 0;
 }
 
-/* Make pages visible properly */
 [id^="page-"] {
     display: block;
     width: 100%;
 }
 
-/* Hero */
+/* Hero Section */
 .hero {
     text-align: center;
     margin-bottom: 50px;
@@ -91,18 +89,16 @@ main {
 .hero h1 {
     font-size: 2.6rem;
     color: #333;
+    text-shadow: 0 2px 4px rgba(255,255,255,0.8); /* Makes text pop on top of image */
     margin-bottom: 12px;
 }
 
-/* Rest of your styles (audio, cards, nav, etc.) */
 .audio-container, .achievements-container {
-    background: white;
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     margin-bottom: 40px;
 }
 
+/* Memories Grid */
 .memories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -110,35 +106,6 @@ main {
     margin-bottom: 50px;
 }
 
-/* Navigation */
-.nav-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: 50px;
-    flex-wrap: wrap;
-}
-
-.nav-btn {
-    background: #3a7bd5;
-    color: white;
-    border: none;
-    padding: 14px 32px;
-    font-size: 1.1rem;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 0 4px 12px rgba(58, 123, 213, 0.3);
-    transition: all 0.2s;
-}
-
-.nav-btn:hover {
-    transform: translateY(-3px);
-    background: #2a6bc5;
-}
-
-/* Keep your other styles (memory cards, fade-in, etc.) */
 .memory-card {
     height: 200px;
     perspective: 1000px;
@@ -168,11 +135,9 @@ main {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 .card-front {
-    background: white;
     color: #555;
     border: 2px dashed #3a7bd5;
 }
@@ -183,7 +148,35 @@ main {
     transform: rotateY(180deg);
 }
 
-/* Mobile */
+/* Navigation Buttons */
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    background: #3a7bd5;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(58, 123, 213, 0.3);
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    transform: translateY(-3px);
+    background: #2a6bc5;
+}
+
+/* Mobile Responsiveness */
 @media (max-width: 600px) {
     .nav-container {
         flex-direction: column;
@@ -191,5 +184,8 @@ main {
     .nav-btn {
         width: 100%;
         max-width: 300px;
+    }
+    .hero h1 {
+        font-size: 2rem;
     }
 }
