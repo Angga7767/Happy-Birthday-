@@ -102,3 +102,28 @@ function showPage(pageNumber) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
+
+// ==========================================
+// 4. Video State Handling Functions
+// ==========================================
+function pauseSurpriseVideo() {
+    const video = document.getElementById("surprise-video");
+    if (video && !video.paused) {
+        video.pause();
+    }
+}
+
+function pauseVideoAndGoBack() {
+    pauseSurpriseVideo();
+    showPage(4);
+}
+
+function pauseVideoAndGoHome() {
+    pauseSurpriseVideo();
+    showPage(1);
+}
+
+function pauseVideoAndGoNext(targetPage) {
+    pauseSurpriseVideo();
+    showPage(targetPage);
+}
