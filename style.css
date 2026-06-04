@@ -243,3 +243,75 @@ main {
         padding: 4px 10px;
     }
 }
+
+/* Secret Glowing Pulsing Button Styles */
+.secret-pulse-btn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+    animation: pulseGlow 2s infinite;
+    transition: all 0.3s ease;
+}
+
+.secret-pulse-btn:hover {
+    transform: scale(1.15) rotate(15deg);
+    background: linear-gradient(135deg, #ff4747 0%, #ff7676 100%);
+}
+
+@keyframes pulseGlow {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.5);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 15px rgba(255, 107, 107, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+    }
+}
+
+/* ==========================================
+   Automatic Mobile-Responsive Media Containers
+   ========================================== */
+
+/* This centers the media elements and prevents them from breaking your card container */
+.media-box-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000000; /* Adds a clean black frame if the image/video has empty space */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+/* AUTOMATIC VIDEO SCALING */
+.media-box-wrapper video {
+    width: 100%;          /* Forces video to match the card width perfectly */
+    max-width: 100%;      /* Ensures it never overflows on small phones */
+    height: auto;         /* Automatically keeps original video height proportion */
+    max-height: 420px;    /* Prevents the video from being way too tall on laptops */
+    display: block;
+    object-fit: contain;  /* Automatically letters-boxes the video so zero cropping happens */
+}
+
+/* AUTOMATIC FINALE IMAGE SCALING */
+.finale-img {
+    width: 100%;          /* Forces image to scale down perfectly to fit phone screens */
+    max-width: 100%;
+    height: auto;         /* Automatically maintains original image proportions */
+    max-height: 450px;    /* Keeps the image clean and elegant on desktop screens */
+    display: block;
+    object-fit: contain;  /* Restricts image layout so it never stretches out or warps */
+}
