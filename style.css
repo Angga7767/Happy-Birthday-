@@ -18,7 +18,7 @@ body {
 }
 
 /* Glassmorphism Effect for Containers */
-.lock-box, .audio-container, .achievements-container, .card-front {
+.lock-box, .audio-container, .achievements-container {
     background: rgba(255, 255, 255, 0.85) !important;
     backdrop-filter: blur(8px);
     border-radius: 15px;
@@ -82,21 +82,20 @@ main {
 /* Hero Section */
 .hero {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .hero h1 {
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     color: #333;
     text-shadow: 0 2px 4px rgba(255,255,255,0.8);
     margin-bottom: 12px;
 }
 
 .audio-container, .achievements-container {
-    padding: 25px;
-    margin-bottom: 30px;
-    height: auto; /* Explicitly ensure it scales organically */
-    overflow: hidden; /* Cleans up internal alignment floats */
+    padding: 30px;
+    margin-bottom: 40px;
+    height: auto;
 }
 
 /* Memories Grid */
@@ -104,53 +103,75 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    align-items: start;
 }
 
-/* Update the memory card to dynamic minimum height */
+/* FIX: Memory Card 3D Flip System */
 .memory-card {
-    min-height: 220px; /* Gives a uniform starting size but lets it grow if text is huge */
-    height: auto;
     perspective: 1000px;
     cursor: pointer;
+    min-height: 250px;
+    display: grid;
 }
 
-/* Ensure the card inner container also handles auto height */
 .card-inner {
-    position: relative;
     width: 100%;
     height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
+    position: relative;
     transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    display: grid;
 }
 
-/* Update front and back to allow dynamic vertical sizing instead of rigid absolute pinning if needed */
+.memory-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* FIX: Use backface-visibility properly and prevent text overlapping ghosting */
 .card-front, .card-back {
-    position: absolute;
+    grid-area: 1 / 1 / 2 / 2;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     border-radius: 12px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    overflow-y: auto; /* Adds a clean inner scrollbar if text somehow exceeds bounds on tiny screens */
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-/* Give the back card text a slightly smaller line-height or font-size if paragraph is dense */
+.card-front {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    color: #555;
+    border: 2px dashed #3a7bd5;
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+.card-back {
+    background: linear-gradient(135deg, #3a7bd5 0%, #2a5a8c 100%);
+    color: white;
+    transform: rotateY(180deg);
+}
+
 .card-back p {
     font-size: 0.95rem;
-    line-height: 1.4;
+    line-height: 1.5;
+    text-align: center;
 }
+
 /* Navigation Buttons */
 .nav-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
-    margin-top: 30px;
+    margin-top: 50px;
     flex-wrap: wrap;
 }
 
@@ -172,13 +193,30 @@ main {
     background: #2a6bc5;
 }
 
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .nav-container {
+        flex-direction: column;
+    }
+    .nav-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .memory-card {
+        min-height: 280px;
+    }
+}
+
 /* Anime Character Corner Styling */
 .anime-corner-container {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 10px;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .anime-character-img {
@@ -190,6 +228,7 @@ main {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+/* Stylized Anime Speech Bubble */
 .speech-bubble {
     position: relative;
     background: #3a7bd5;
@@ -212,71 +251,13 @@ main {
     border-color: transparent transparent transparent #3a7bd5;
 }
 
-/* Secret Glowing Pulsing Easter-Egg Button */
-.secret-pulse-btn {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    width: 60px;
-    height: 60px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
-    animation: pulseGlow 2s infinite;
-    transition: all 0.3s ease;
-}
-
-.secret-pulse-btn:hover {
-    transform: scale(1.15) rotate(15deg);
-    background: linear-gradient(135deg, #ff4747 0%, #ff7676 100%);
-}
-
-@keyframes pulseGlow {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.5); }
-    70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(255, 107, 107, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
-}
-
-/* Automatic Scaling Wrappers for Media Containers */
-.media-box-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #000000;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-}
-
-.media-box-wrapper video {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    max-height: 420px;
-    display: block;
-    object-fit: contain;
-}
-
-.finale-img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    max-height: 450px;
-    display: block;
-    object-fit: contain;
-}
-
-/* Device Responsive Breakpoints */
-@media (max-width: 600px) {
-    .nav-container { flex-direction: column; }
-    .nav-btn { width: 100%; max-width: 300px; }
-    .hero h1 { font-size: 1.8rem; }
-}
-
 @media (max-width: 480px) {
-    .anime-character-img { width: 65px; height: 65px; }
-    .speech-bubble { font-size: 0.75rem; padding: 4px 10px; }
+    .anime-character-img {
+        width: 65px;
+        height: 65px;
+    }
+    .speech-bubble {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
 }
