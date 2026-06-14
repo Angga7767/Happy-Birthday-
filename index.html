@@ -25,10 +25,10 @@
             </header>
 
             <section class="audio-container">
-                <h3>Press Play (A little something from miles away)</h3>
+                <h3>Press Play (A message from miles away)</h3>
                 <audio id="birthday-audio" src="voice-memo.mp3" preload="auto"></audio>
                 <div class="audio-controls" style="display: flex; align-items: center; gap: 15px; margin-top: 15px;">
-                    <button id="play-btn" onclick="toggleAudio()" style="background: #3a7bd5; color: white; border: none; padding: 10px 20px; border-radius: 30px; cursor: pointer; font-weight: bold;">▶ Play</button>
+                    <button id="play-btn" onclick="toggleAudio()">▶ Play</button>
                     <div class="progress-bar-container" onclick="seekAudio(event)" style="flex-grow: 1; background: #e0e0e0; height: 8px; border-radius: 4px; cursor: pointer; position: relative;">
                         <div id="progress-bar" style="background: #3a7bd5; width: 0%; height: 100%; border-radius: 4px; transition: width 0.1s linear;"></div>
                     </div>
@@ -42,7 +42,7 @@
                             <p>💡 Click to open a memory</p>
                         </div>
                         <div class="card-back">
-                            <p>"Remember that time you got so lucky and pulled your favorite character more than three times in a row, my dear? Or when you finally got the characters you always wanted, like Jing Yuan? And, of course, when you got accepted into your Master’s program! I hope only good things continue to come your way, my dear. I hope you always keep that smile on your face, and that your life stays as beautiful as you are"</p>
+                            <p>"Remember that time you got so lucky and pulled your favorite character more than three times in a row, my dear? Or when you finally got the characters you always wanted, like Jing Yuan? And, of course, when you got accepted into your Master’s program! I hope only good things continue to come your way, my dear. I hope you always keep that smile on your face, and that your life stays as beautiful as you are."</p>
                         </div>
                     </div>
                 </div>
@@ -82,9 +82,9 @@
             </header>
 
             <section class="achievements-container">
-                <div class="achievement-card" style="position: relative; padding-bottom: 20px;">
-                    <h3 style="color: #3a7bd5; margin-bottom: 10px; font-size: 1.4rem;">Future Master of Laws (M.Kn) 🎓</h3>
-                    <p style="line-height: 1.6; color: #555; margin-bottom: 20px;">
+                <div class="achievement-card">
+                    <h3 style="color: #3a7bd5; margin-bottom: 12px; font-size: 1.4rem;">Future Master of Laws (M.Kn) 🎓</h3>
+                    <p style="line-height: 1.6; color: #555; margin-bottom: 15px;">
                         Getting accepted into your Master's program is huge, my dear! You work so hard every single day, and every little thing you do truly amazes me. Your dedication to law inspires me to be better every day, and I know you're going to completely crush this next chapter in life. I believe in you, bey. Please don't overwork yourself, okay? I am incredibly proud of you!
                     </p>
                     
@@ -110,7 +110,7 @@
 
             <section class="achievements-container">
                 <div class="achievement-card">
-                    <h3 style="color: #3a7bd5; margin-bottom: 10px; font-size: 1.4rem;">Pesan Dari Aku ❤️</h3>
+                    <h3 style="color: #3a7bd5; margin-bottom: 12px; font-size: 1.4rem;">Pesan Dari Aku ❤️</h3>
                     <p style="line-height: 1.6; color: #555;">
                         Happy Birthday sayangku, ini pesan dari diriku. Bey, terimakasih sudah bertahan sejauh ini! Terimakasih telah terus berusaha sejauh ini dalam hidup, ayang sudah berusaha keras baik sadar atau tidak. Aku harap ayang bisa dapat semua yang bey inginkan, aku harap bey bisa terus tersenyum, bey pantas mendapatkan semua hal yang bey inginkan. Semoga hari harinya terus kedepannya bisa sesuai yang bey mau dan tidak ada hal buruk.
                     </p>
@@ -122,7 +122,7 @@
                 <button class="nav-btn home-btn" style="background: #5c6bc0;" onclick="showPage(1)">🏠 Home</button>
                 <button class="nav-btn" onclick="showPage(4)">Next ➔</button>
             </div>
-        </div> 
+        </div>
 
         <div id="page-4" class="hidden">
             <header class="hero">
@@ -137,11 +137,6 @@
                 <p style="line-height: 1.6; color: #555; margin-bottom: 20px;">
                     Take a good care in life okay my dear? Bey ga sendirian. Selamat ulang tahun sayangku! Selamat ulang tahun dan semoga panjang umur juga bahagia kasihku tercinta ^^!
                 </p>
-
-                <div class="secret-trigger-wrapper" style="margin-top: 35px;">
-                    <p style="font-size: 0.85rem; color: #777; margin-bottom: 12px; font-style: italic;">Wait, what's this...? 🤔</p>
-                    <button class="secret-pulse-btn" onclick="showPage(5)">?</button>
-                </div>
             </section>
 
             <div class="nav-container">
@@ -150,51 +145,9 @@
             </div>
         </div>
 
-        <div id="page-5" class="hidden">
-            <header class="hero">
-                <h1>Memories in Motion 🎬</h1>
-                <p>A little compilation throughout the year</p>
-            </header>
-
-            <section class="achievements-container">
-                <div class="media-box-wrapper">
-                    <video id="surprise-video" controls preload="metadata">
-                        <source src="compilation.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </section>
-
-            <div class="nav-container">
-                <button class="nav-btn secondary-btn" onclick="pauseVideoAndGoBack()">⬅ Back</button>
-                <button class="nav-btn home-btn" style="background: #5c6bc0;" onclick="pauseVideoAndGoHome()">🏠 Home</button>
-                <button class="nav-btn" onclick="pauseVideoAndGoNext(6)">The Finale ➔</button>
-            </div>
-        </div>
-
-        <div id="page-6" class="hidden">
-            <header class="hero">
-                <h1>Forever & Always ✨</h1>
-                <p>To many more birthdays together.</p>
-            </header>
-
-            <section class="achievements-container" style="text-align: center;">
-                <div class="finale-card">
-                    <div class="media-box-wrapper">
-                        <img src="finale.jpg" alt="Our Special Memory" class="finale-img">
-                    </div>
-                    <h3 style="color: #3a7bd5; margin-top: 25px; margin-bottom: 10px;">I love you to the moon and back! ❤️</h3>
-                    <p style="color: #555; line-height: 1.6;">Happy Birthday, my dear. Thank you for being the best part of my world.</p>
-                </div>
-            </section>
-
-            <div class="nav-container">
-                <button class="nav-btn secondary-btn" onclick="showPage(5)">⬅ Back</button>
-                <button class="nav-btn home-btn" style="background: #5c6bc0;" onclick="showPage(1)">🏠 Home</button>
-            </div>
-        </div>
-
     </main>
+
+    <audio id="bg-audio" src="bg-music.mp3" loop></audio>
 
     <div id="yt-bg-player" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px; pointer-events: none;"></div>
 
