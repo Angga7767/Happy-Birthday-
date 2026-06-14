@@ -142,6 +142,49 @@
                 <button class="nav-btn" style="background: #5c6bc0;" onclick="showPage(1)">🏠 Home</button>
             </div>
         </div>
+ <div id="page-5" class="hidden">
+            <header class="hero">
+                <h1>Memories in Motion 🎬</h1>
+                <p>A little compilation throughout the year</p>
+            </header>
+
+            <section class="achievements-container">
+                <div class="media-box-wrapper">
+                    <video id="surprise-video" controls preload="metadata">
+                        <source src="compilation.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </section>
+
+            <div class="nav-container">
+                <button class="nav-btn secondary-btn" onclick="pauseVideoAndGoBack()">⬅ Back</button>
+                <button class="nav-btn home-btn" style="background: #5c6bc0;" onclick="pauseVideoAndGoHome()">🏠 Home</button>
+                <button class="nav-btn" onclick="pauseVideoAndGoNext(6)">The Finale ➔</button>
+            </div>
+        </div>
+
+        <div id="page-6" class="hidden">
+            <header class="hero">
+                <h1>Forever & Always ✨</h1>
+                <p>To many more birthdays together.</p>
+            </header>
+
+            <section class="achievements-container" style="text-align: center;">
+                <div class="finale-card">
+                    <div class="media-box-wrapper">
+                        <img src="finale.jpg" alt="Our Special Memory" class="finale-img">
+                    </div>
+                    <h3 style="color: #3a7bd5; margin-top: 25px; margin-bottom: 10px;">I love you to the moon and back! ❤️</h3>
+                    <p style="color: #555; line-height: 1.6;">Happy Birthday, my dear. Thank you for being the best part of my world.</p>
+                </div>
+            </section>
+
+            <div class="nav-container">
+                <button class="nav-btn secondary-btn" onclick="showPage(5)">⬅ Back</button>
+                <button class="nav-btn home-btn" style="background: #5c6bc0;" onclick="showPage(1)">🏠 Home</button>
+            </div>
+        </div>
 
     </main>
 
