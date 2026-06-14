@@ -1,4 +1,4 @@
-/* Base Styles & Reset */
+/* Base Reset Layout */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -17,7 +17,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Glassmorphism Effect for Containers */
+/* Glassmorphism Containers */
 .lock-box, .audio-container, .achievements-container {
     background: rgba(255, 255, 255, 0.85) !important;
     backdrop-filter: blur(8px);
@@ -25,12 +25,12 @@ body {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-/* Hidden class */
+/* Utility Hidden Toggle */
 .hidden {
     display: none !important;
 }
 
-/* Lock Screen */
+/* Passcode Lock Area */
 #lock-screen {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -66,7 +66,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* ================= MAIN CONTENT ================= */
+/* ================= SURPRISE PAGES STYLES ================= */
 main {
     max-width: 820px;
     width: 90%;
@@ -79,7 +79,6 @@ main {
     width: 100%;
 }
 
-/* Hero Section */
 .hero {
     text-align: center;
     margin-bottom: 50px;
@@ -97,24 +96,26 @@ main {
     margin-bottom: 40px;
 }
 
-/* Smooth Play Button Styling Restoration */
+/* Custom Play Button Design */
 .audio-controls button {
     background: #3a7bd5;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 24px;
     border-radius: 30px;
     cursor: pointer;
     font-weight: bold;
     font-size: 0.95rem;
-    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(58, 123, 213, 0.3);
+    transition: background 0.2s, transform 0.1s;
 }
 
 .audio-controls button:hover {
     background: #2a6bc5;
+    transform: scale(1.02);
 }
 
-/* Memories Grid */
+/* Memories Grid Configuration */
 .memories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -123,11 +124,11 @@ main {
     align-items: start;
 }
 
-/* Memory Card 3D Flip System (Prevents Overlap & Keeps Dimensions Balanced) */
+/* Card 3D Flip System */
 .memory-card {
     perspective: 1000px;
     cursor: pointer;
-    height: 245px;
+    height: 250px;
     display: grid;
 }
 
@@ -144,7 +145,7 @@ main {
     transform: rotateY(180deg);
 }
 
-/* Use grid stacking to make card layers dynamically share exact alignment boundaries */
+/* Explicit Grid overlay to align front and back layers symmetrically */
 .card-front, .card-back {
     grid-area: 1 / 1 / 2 / 2;
     width: 100%;
@@ -175,7 +176,7 @@ main {
     transform: rotateY(180deg);
 }
 
-/* Slightly minimized, elegant paragraph scale down for her text blocks */
+/* Reduced card text layout scaling */
 .card-back p {
     font-size: 0.82rem;
     line-height: 1.45;
@@ -183,7 +184,7 @@ main {
     padding: 2px;
 }
 
-/* Navigation Buttons */
+/* Page Navigation Buttons */
 .nav-container {
     display: flex;
     justify-content: center;
@@ -211,7 +212,7 @@ main {
     background: #2a6bc5;
 }
 
-/* Mobile Responsiveness */
+/* Mobile Adjustments */
 @media (max-width: 600px) {
     .nav-container {
         flex-direction: column;
@@ -224,11 +225,11 @@ main {
         font-size: 2rem;
     }
     .memory-card {
-        height: 260px;
+        height: 270px;
     }
 }
 
-/* Anime Character Corner Styling */
+/* Character Bubble Component Accents */
 .anime-corner-container {
     display: flex;
     align-items: center;
@@ -246,7 +247,6 @@ main {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Stylized Anime Speech Bubble */
 .speech-bubble {
     position: relative;
     background: #3a7bd5;
