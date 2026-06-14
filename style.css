@@ -7,7 +7,8 @@
 }
 
 body {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('bg.jpg');
+    /* FIXED: Using a solid linear-gradient color base instead of pure transparency so elements underneath don't bleed through */
+    background: linear-gradient(rgba(245, 247, 250, 0.85), rgba(245, 247, 250, 0.85)), url('bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -18,11 +19,12 @@ body {
 }
 
 /* Glassmorphism Effect for Containers */
-.lock-box, .audio-container, .achievements-container, .card-front {
-    background: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(8px);
+/* FIXED: Made the background solid white with full opacity to completely hide overlapping underlying image artifacts */
+.lock-box, .audio-container, .achievements-container {
+    background: #ffffff !important;
     border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Hidden class */
@@ -74,6 +76,11 @@ main {
     padding: 20px 0;
 }
 
+/* FIXED: Ensure hidden sections are explicitly dropped from rendering structural bounds */
+[id^="page-"].hidden {
+    display: none !important;
+}
+
 [id^="page-"] {
     display: block;
     width: 100%;
@@ -97,19 +104,18 @@ main {
     margin-bottom: 30px;
 }
 
-/* Memories Grid - Modern 3D Flip System Fix */
+/* Memories Grid Layout Fixes */
 .memories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
     margin-bottom: 40px;
 }
 
 .memory-card {
-    height: 250px; /* Enhanced default clearance spacing */
+    min-height: 220px;
     perspective: 1000px;
     cursor: pointer;
-    display: grid;
 }
 
 .card-inner {
@@ -119,50 +125,46 @@ main {
     text-align: center;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
-    display: grid;
 }
 
 .memory-card.flipped .card-inner {
     transform: rotateY(180deg);
 }
 
-/* Stacking grids perfectly so raw layout boundaries never distort front text overlays */
+/* FIXED: Added explicit layout isolation logic to separate the front and back card states */
 .card-front, .card-back {
-    grid-area: 1 / 1 / 2 / 2;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     border-radius: 12px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 24px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 .card-front {
+    background: #ffffff;
     color: #555;
     border: 2px dashed #3a7bd5;
-    z-index: 2;
-    transform: rotateY(0deg);
+    z-index: 2; /* Ensures front side renders on top initially */
 }
 
 .card-back {
     background: linear-gradient(135deg, #3a7bd5 0%, #2a5a8c 100%);
     color: white;
     transform: rotateY(180deg);
-}
-
-/* Optimized typography footprint inside memories cards */
-.card-back p {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     line-height: 1.5;
-    text-align: center;
+    overflow-y: auto; /* Adds a scrollbar automatically if the quote text is too long for small screens */
 }
 
-/* Navigation Buttons Styling Engine */
+/* Navigation Buttons */
 .nav-container {
     display: flex;
     justify-content: center;
@@ -182,7 +184,7 @@ main {
     cursor: pointer;
     font-weight: bold;
     box-shadow: 0 4px 12px rgba(58, 123, 213, 0.3);
-    transition: all 0.2s ease;
+    transition: all 0.2s;
 }
 
 .nav-btn:hover {
@@ -190,24 +192,9 @@ main {
     background: #2a6bc5;
 }
 
-/* Custom Back Button Variant Style Fixes */
 .nav-btn.secondary-btn {
-    background: #6c757d;
+    background: #6c757d !important;
     box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
-}
-
-.nav-btn.secondary-btn:hover {
-    background: #5a6268;
-}
-
-/* Custom Home Button Variant Style Fixes */
-.nav-btn.home-btn {
-    background: #5c6bc0 !important;
-    box-shadow: 0 4px 12px rgba(92, 107, 192, 0.3);
-}
-
-.nav-btn.home-btn:hover {
-    background: #4a59a8 !important;
 }
 
 /* Anime Character Corner Styling */
@@ -277,7 +264,7 @@ main {
     100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
 }
 
-/* Automatic Scaling Wrappers for Media Containers (Pages 5 & 6) */
+/* Automatic Scaling Wrappers for Media Containers */
 .media-box-wrapper {
     width: 100%;
     display: flex;
@@ -298,13 +285,6 @@ main {
     object-fit: contain;
 }
 
-.finale-card {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .finale-img {
     width: 100%;
     max-width: 100%;
@@ -319,7 +299,6 @@ main {
     .nav-container { flex-direction: column; }
     .nav-btn { width: 100%; max-width: 300px; }
     .hero h1 { font-size: 1.8rem; }
-    .memory-card { height: 280px; } /* Ensures card boundaries clear text heights comfortably on mobile phones */
 }
 
 @media (max-width: 480px) {
