@@ -7,8 +7,7 @@
 }
 
 body {
-    /* FIXED: Using a solid linear-gradient color base instead of pure transparency so elements underneath don't bleed through */
-    background: linear-gradient(rgba(245, 247, 250, 0.85), rgba(245, 247, 250, 0.85)), url('bg.jpg');
+    background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -19,12 +18,11 @@ body {
 }
 
 /* Glassmorphism Effect for Containers */
-/* FIXED: Made the background solid white with full opacity to completely hide overlapping underlying image artifacts */
-.lock-box, .audio-container, .achievements-container {
-    background: #ffffff !important;
+.lock-box, .audio-container, .achievements-container, .card-front {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(8px);
     border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 /* Hidden class */
@@ -76,11 +74,6 @@ main {
     padding: 20px 0;
 }
 
-/* FIXED: Ensure hidden sections are explicitly dropped from rendering structural bounds */
-[id^="page-"].hidden {
-    display: none !important;
-}
-
 [id^="page-"] {
     display: block;
     width: 100%;
@@ -104,16 +97,16 @@ main {
     margin-bottom: 30px;
 }
 
-/* Memories Grid Layout Fixes */
+/* Memories Grid */
 .memories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
     margin-bottom: 40px;
 }
 
 .memory-card {
-    min-height: 220px;
+    height: 200px;
     perspective: 1000px;
     cursor: pointer;
 }
@@ -123,7 +116,7 @@ main {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.6s;
     transform-style: preserve-3d;
 }
 
@@ -131,37 +124,27 @@ main {
     transform: rotateY(180deg);
 }
 
-/* FIXED: Added explicit layout isolation logic to separate the front and back card states */
 .card-front, .card-back {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
     border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 24px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 20px;
 }
 
 .card-front {
-    background: #ffffff;
     color: #555;
     border: 2px dashed #3a7bd5;
-    z-index: 2; /* Ensures front side renders on top initially */
 }
 
 .card-back {
     background: linear-gradient(135deg, #3a7bd5 0%, #2a5a8c 100%);
     color: white;
     transform: rotateY(180deg);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    overflow-y: auto; /* Adds a scrollbar automatically if the quote text is too long for small screens */
 }
 
 /* Navigation Buttons */
@@ -190,11 +173,6 @@ main {
 .nav-btn:hover {
     transform: translateY(-3px);
     background: #2a6bc5;
-}
-
-.nav-btn.secondary-btn {
-    background: #6c757d !important;
-    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
 }
 
 /* Anime Character Corner Styling */
