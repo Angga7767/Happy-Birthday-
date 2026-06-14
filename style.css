@@ -279,3 +279,72 @@ main {
         padding: 4px 10px;
     }
 }
+
+/* Secret Glowing Pulsing Easter-Egg Button */
+.secret-pulse-btn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+    animation: pulseGlow 2s infinite;
+    transition: all 0.3s ease;
+}
+
+.secret-pulse-btn:hover {
+    transform: scale(1.15) rotate(15deg);
+    background: linear-gradient(135deg, #ff4747 0%, #ff7676 100%);
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.5); }
+    70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(255, 107, 107, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+}
+
+/* Automatic Scaling Wrappers for Media Containers */
+.media-box-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.media-box-wrapper video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 420px;
+    display: block;
+    object-fit: contain;
+}
+
+.finale-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 450px;
+    display: block;
+    object-fit: contain;
+}
+
+/* Device Responsive Breakpoints */
+@media (max-width: 600px) {
+    .nav-container { flex-direction: column; }
+    .nav-btn { width: 100%; max-width: 300px; }
+    .hero h1 { font-size: 1.8rem; }
+}
+
+@media (max-width: 480px) {
+    .anime-character-img { width: 65px; height: 65px; }
+    .speech-bubble { font-size: 0.75rem; padding: 4px 10px; }
+}
