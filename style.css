@@ -95,6 +95,8 @@ main {
 .audio-container, .achievements-container {
     padding: 25px;
     margin-bottom: 30px;
+    height: auto; /* Explicitly ensure it scales organically */
+    overflow: hidden; /* Cleans up internal alignment floats */
 }
 
 /* Memories Grid */
@@ -105,12 +107,15 @@ main {
     margin-bottom: 40px;
 }
 
+/* Update the memory card to dynamic minimum height */
 .memory-card {
-    height: 200px;
+    min-height: 220px; /* Gives a uniform starting size but lets it grow if text is huge */
+    height: auto;
     perspective: 1000px;
     cursor: pointer;
 }
 
+/* Ensure the card inner container also handles auto height */
 .card-inner {
     position: relative;
     width: 100%;
@@ -120,10 +125,7 @@ main {
     transform-style: preserve-3d;
 }
 
-.memory-card.flipped .card-inner {
-    transform: rotateY(180deg);
-}
-
+/* Update front and back to allow dynamic vertical sizing instead of rigid absolute pinning if needed */
 .card-front, .card-back {
     position: absolute;
     width: 100%;
@@ -134,19 +136,14 @@ main {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    overflow-y: auto; /* Adds a clean inner scrollbar if text somehow exceeds bounds on tiny screens */
 }
 
-.card-front {
-    color: #555;
-    border: 2px dashed #3a7bd5;
+/* Give the back card text a slightly smaller line-height or font-size if paragraph is dense */
+.card-back p {
+    font-size: 0.95rem;
+    line-height: 1.4;
 }
-
-.card-back {
-    background: linear-gradient(135deg, #3a7bd5 0%, #2a5a8c 100%);
-    color: white;
-    transform: rotateY(180deg);
-}
-
 /* Navigation Buttons */
 .nav-container {
     display: flex;
