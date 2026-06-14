@@ -97,13 +97,13 @@ main {
     margin-bottom: 30px;
 }
 
-/* RESTORED: Clean Pill-Shaped Rounded Play Button Layout */
+/* Clean Pill-Shaped Rounded Play Button Layout */
 #play-btn {
     background: #3a7bd5;
     color: white;
     border: none;
     padding: 10px 24px;
-    border-radius: 30px; /* Perfect roundness */
+    border-radius: 30px;
     cursor: pointer;
     font-weight: bold;
     font-size: 0.95rem;
@@ -124,7 +124,7 @@ main {
 }
 
 .memory-card {
-    height: 255px; /* Fixed viewport container line */
+    height: 285px; /* FIXED: Boosted vertical frame height to completely stop text cropping bugs */
     perspective: 1000px;
     cursor: pointer;
 }
@@ -172,12 +172,12 @@ main {
     transform: rotateY(180deg);
 }
 
-/* RESTORED: Minimized micro-typography to prevent scrolling boxes */
+/* FIXED: Optimized paragraph footprint inside card container to fit her mobile layout beautifully */
 .card-back p {
-    font-size: 0.81rem;
+    font-size: 0.78rem; 
     line-height: 1.45;
     text-align: center;
-    overflow: hidden; /* Removes scrolling entirely */
+    overflow: hidden;
 }
 
 /* Navigation System Base */
@@ -258,7 +258,7 @@ main {
     border-color: transparent transparent transparent #3a7bd5;
 }
 
-/* RESTORED: Pulsing Easter-Egg Heart Button Engine */
+/* Pulsing Easter-Egg Heart Button Engine */
 .secret-pulse-btn {
     background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
     color: white;
@@ -323,6 +323,6 @@ main {
     .nav-container { flex-direction: column; }
     .nav-btn { width: 100%; max-width: 300px; }
     .hero h1 { font-size: 1.8rem; }
-    .memory-card { height: 275px; }
-    .card-back p { font-size: 0.78rem; }
+    .memory-card { height: 310px; } /* FIXED: Gives mobile screens an extra baseline boost for the long quote text */
+    .card-back p { font-size: 0.76rem; }
 }
