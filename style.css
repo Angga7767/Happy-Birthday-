@@ -18,7 +18,7 @@ body {
 }
 
 /* Glassmorphism Effect for Containers */
-.lock-box, .audio-container, .achievements-container, .card-front {
+.lock-box, .audio-container, .achievements-container {
     background: rgba(255, 255, 255, 0.85) !important;
     backdrop-filter: blur(8px);
     border-radius: 15px;
@@ -97,7 +97,25 @@ main {
     margin-bottom: 30px;
 }
 
-/* Memories Grid */
+/* RESTORED: Clean Pill-Shaped Rounded Play Button Layout */
+#play-btn {
+    background: #3a7bd5;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 30px; /* Perfect roundness */
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px rgba(58, 123, 213, 0.25);
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+#play-btn:hover {
+    background: #2a6bc5;
+}
+
+/* Memories Grid Context */
 .memories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -106,7 +124,7 @@ main {
 }
 
 .memory-card {
-    height: 200px;
+    height: 255px; /* Fixed viewport container line */
     perspective: 1000px;
     cursor: pointer;
 }
@@ -116,7 +134,7 @@ main {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.6s;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
 }
 
@@ -124,21 +142,28 @@ main {
     transform: rotateY(180deg);
 }
 
+/* Cards Overlay Setup */
 .card-front, .card-back {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     border-radius: 12px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .card-front {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
     color: #555;
     border: 2px dashed #3a7bd5;
+    z-index: 2;
+    transform: rotateY(0deg);
 }
 
 .card-back {
@@ -147,7 +172,15 @@ main {
     transform: rotateY(180deg);
 }
 
-/* Navigation Buttons */
+/* RESTORED: Minimized micro-typography to prevent scrolling boxes */
+.card-back p {
+    font-size: 0.81rem;
+    line-height: 1.45;
+    text-align: center;
+    overflow: hidden; /* Removes scrolling entirely */
+}
+
+/* Navigation System Base */
 .nav-container {
     display: flex;
     justify-content: center;
@@ -167,7 +200,7 @@ main {
     cursor: pointer;
     font-weight: bold;
     box-shadow: 0 4px 12px rgba(58, 123, 213, 0.3);
-    transition: all 0.2s;
+    transition: all 0.2s ease;
 }
 
 .nav-btn:hover {
@@ -175,7 +208,17 @@ main {
     background: #2a6bc5;
 }
 
-/* Anime Character Corner Styling */
+.nav-btn.secondary-btn {
+    background: #6c757d !important;
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.2);
+}
+
+.nav-btn.home-btn {
+    background: #5c6bc0 !important;
+    box-shadow: 0 4px 12px rgba(92, 107, 192, 0.2);
+}
+
+/* Anime Corner Accents */
 .anime-corner-container {
     display: flex;
     align-items: center;
@@ -215,7 +258,7 @@ main {
     border-color: transparent transparent transparent #3a7bd5;
 }
 
-/* Secret Glowing Pulsing Easter-Egg Button */
+/* RESTORED: Pulsing Easter-Egg Heart Button Engine */
 .secret-pulse-btn {
     background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
     color: white;
@@ -228,6 +271,9 @@ main {
     cursor: pointer;
     box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
     animation: pulseGlow 2s infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
 }
 
@@ -242,7 +288,7 @@ main {
     100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
 }
 
-/* Automatic Scaling Wrappers for Media Containers */
+/* Media Box Scaling Controls */
 .media-box-wrapper {
     width: 100%;
     display: flex;
@@ -272,14 +318,11 @@ main {
     object-fit: contain;
 }
 
-/* Device Responsive Breakpoints */
+/* Responsiveness adjustments */
 @media (max-width: 600px) {
     .nav-container { flex-direction: column; }
     .nav-btn { width: 100%; max-width: 300px; }
     .hero h1 { font-size: 1.8rem; }
-}
-
-@media (max-width: 480px) {
-    .anime-character-img { width: 65px; height: 65px; }
-    .speech-bubble { font-size: 0.75rem; padding: 4px 10px; }
+    .memory-card { height: 275px; }
+    .card-back p { font-size: 0.78rem; }
 }
